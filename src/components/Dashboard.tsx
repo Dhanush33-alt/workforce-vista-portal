@@ -46,8 +46,10 @@ export function Dashboard() {
     { action: "Performance review", employee: "John Smith", time: "1 day ago", type: "review" },
   ]
 
+  console.log("Dashboard component is rendering")
+
   return (
-    <div className="space-y-6 animate-fade-in-up">
+    <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-slate-800 mb-2">Dashboard Overview</h2>
         <p className="text-slate-600">Welcome back! Here's what's happening with your team today.</p>
@@ -56,7 +58,7 @@ export function Dashboard() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
-          <Card key={stat.title} className="hover:shadow-lg transition-shadow duration-200 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+          <Card key={stat.title} className="hover:shadow-lg transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-slate-600">
                 {stat.title}
@@ -67,7 +69,7 @@ export function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-slate-800">{stat.value}</div>
-              <p className="text-xs text-muted-foreground flex items-center mt-1">
+              <p className="text-xs text-slate-500 flex items-center mt-1">
                 <span className="text-green-600 font-medium">{stat.change}</span>
                 <span className="ml-1">from last month</span>
               </p>
@@ -78,7 +80,7 @@ export function Dashboard() {
 
       {/* Recent Activities */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="animate-fade-in-up" style={{ animationDelay: "400ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle className="text-xl text-slate-800">Recent Activities</CardTitle>
             <CardDescription>Latest updates from your team</CardDescription>
@@ -106,7 +108,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card className="animate-fade-in-up" style={{ animationDelay: "500ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle className="text-xl text-slate-800">Quick Actions</CardTitle>
             <CardDescription>Common tasks and shortcuts</CardDescription>

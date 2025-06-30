@@ -8,6 +8,8 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
+  console.log("Layout component is rendering with children:", !!children)
+  
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-50">
