@@ -24,9 +24,10 @@ const items = [
 ]
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar()
+  const { state } = useSidebar()
   const location = useLocation()
   const currentPath = location.pathname
+  const isCollapsed = state === "collapsed"
 
   const isActive = (path: string) => {
     if (path === "/") return currentPath === "/"
@@ -42,8 +43,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar
-      className={`${collapsed ? "w-16" : "w-64"} border-r border-slate-200 bg-white`}
-      collapsible
+      className={`${isCollapsed ? "w-16" : "w-64"} border-r border-slate-200 bg-white`}
+      collapsible="icon"
     >
       <SidebarContent className="p-4">
         <div className="mb-8">
@@ -51,7 +52,7 @@ export function AppSidebar() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Users className="w-5 h-5 text-white" />
             </div>
-            {!collapsed && (
+            {!isCollapsed && (
               <div>
                 <h2 className="text-lg font-bold text-slate-800">EMS Pro</h2>
                 <p className="text-xs text-slate-500">Professional Edition</p>
@@ -62,7 +63,7 @@ export function AppSidebar() {
 
         <SidebarGroup>
           <SidebarGroupLabel className="text-slate-600 font-medium mb-3">
-            {!collapsed && "Navigation"}
+            {!isCollapsed && "Navigation"}
           </SidebarGroupLabel>
           
           <SidebarGroupContent>
@@ -71,8 +72,8 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <NavLink to={item.url} className={getNavCls({ isActive: isActive(item.url) })}>
-                      <item.icon className={`${collapsed ? "mx-auto" : "mr-3"} h-5 w-5`} />
-                      {!collapsed && <span>{item.title}</span>}
+                      <item.icon className={`${isCollapsed ? "mx-auto" : "mr-3"} h-5 w-5`} />
+                      {!isCollapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
